@@ -2,6 +2,7 @@ import { Carro } from "./interface/Carro";
 import { Moto } from './interface/Moto';
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
 import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
+import { FiltroVeiculos } from './utils/FiltroVeiculo';
 
 const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
 const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
@@ -58,3 +59,14 @@ function exibirDetalhesVeiculo(veiculo: Carro | Moto) {
 
 gerenciadorCarros.listarVeiculos().forEach(exibirDetalhesVeiculo);
 gerenciadorMotos.listarVeiculos().forEach(exibirDetalhesVeiculo);
+
+const todosVeiculos = [...gerenciadorCarros.listarVeiculos(), ...gerenciadorMotos.listarVeiculos()];
+
+console.log("--- Veículos do ano 2022 ---");
+console.log(FiltroVeiculos.filtrarPorAno(todosVeiculos, 2022));
+
+console.log("--- Veículos da marca Honda ---");
+console.log(FiltroVeiculos.filtrarPorMarca(todosVeiculos, "Honda"));
+
+console.log("--- Veículos do modelo Corolla ---");
+console.log(FiltroVeiculos.filtrarPorModelo(todosVeiculos, "Corolla"));
