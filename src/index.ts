@@ -1,9 +1,13 @@
 import { Carro } from "./interface/Carro";
 import { Moto } from './interface/Moto';
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
+import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
 
 const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
 const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
+
+const estoqueCarros = new EstoqueVeiculos<Carro>();
+const estoqueMotos = new EstoqueVeiculos<Moto>();
 
 const meuCarro: Carro = {
     marca: "Toyota",
@@ -23,6 +27,18 @@ const minhaMoto: Moto = {
 
 gerenciadorCarros.adicionar(meuCarro);
 gerenciadorMotos.adicionar(minhaMoto);
+
+estoqueCarros.adicionarEstoque(meuCarro.modelo, 10);
+estoqueMotos.adicionarEstoque(minhaMoto.modelo, 5);
+
+estoqueCarros.consultarEstoque("Corolla");
+estoqueMotos.consultarEstoque("CB 500");
+
+estoqueCarros.removerEstoque("Corolla");
+estoqueMotos.removerEstoque("CB 500");
+
+estoqueCarros.listarEstoque();
+estoqueMotos.listarEstoque();
 
 function exibirDetalhesVeiculo(veiculo: Carro | Moto) {
     console.log("--- Detalhes do Veiculo ---");
