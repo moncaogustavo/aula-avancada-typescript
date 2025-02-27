@@ -3,6 +3,7 @@ import { Moto } from './interface/Moto';
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
 import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
 import { FiltroVeiculos } from './utils/FiltroVeiculo';
+import { RelatorioVeiculos } from './utils/RelatorioVeiculos';
 
 const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
 const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
@@ -70,3 +71,6 @@ console.log(FiltroVeiculos.filtrarPorMarca(todosVeiculos, "Honda"));
 
 console.log("--- Veículos do modelo Corolla ---");
 console.log(FiltroVeiculos.filtrarPorModelo(todosVeiculos, "Corolla"));
+
+console.log("--- Relatório de Veículos ---");
+console.log(RelatorioVeiculos.gerarRelatorio(todosVeiculos));
