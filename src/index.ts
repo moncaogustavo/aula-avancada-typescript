@@ -1,5 +1,9 @@
 import { Carro } from "./interface/Carro";
 import { Moto } from './interface/Moto';
+import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
+
+const gerenciadorCarros = new GerenciadorVeiculos<Carro>();
+const gerenciadorMotos = new GerenciadorVeiculos<Moto>();
 
 const meuCarro: Carro = {
     marca: "Toyota",
@@ -17,6 +21,9 @@ const minhaMoto: Moto = {
     acelerar: () => "A moto está acelerando!"
 };
 
+gerenciadorCarros.adicionar(meuCarro);
+gerenciadorMotos.adicionar(minhaMoto);
+
 function exibirDetalhesVeiculo(veiculo: Carro | Moto) {
     console.log("--- Detalhes do Veiculo ---");
     console.log(`Marca: ${veiculo.marca}`);
@@ -33,5 +40,5 @@ function exibirDetalhesVeiculo(veiculo: Carro | Moto) {
     console.log("-----------------------");
 }
 
-exibirDetalhesVeiculo(meuCarro);
-exibirDetalhesVeiculo(minhaMoto);
+gerenciadorCarros.listarVeiculos().forEach(exibirDetalhesVeiculo);
+gerenciadorMotos.listarVeiculos().forEach(exibirDetalhesVeiculo);
